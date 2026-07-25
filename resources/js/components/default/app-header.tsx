@@ -15,19 +15,19 @@ import {
     NavigationMenuItem,
     NavigationMenuList,
     navigationMenuTriggerStyle,
-} from '@/components/default/navigation-menu';
+} from '@/components/default/ui/navigation-menu';
 import {
     Sheet,
     SheetContent,
     SheetHeader,
     SheetTitle,
     SheetTrigger,
-} from '@/components/default/sheet';
+} from '@/components/default/ui/sheet';
 import {
     Tooltip,
     TooltipContent,
     TooltipTrigger,
-} from '@/components/default/tooltip';
+} from '@/components/default/ui/tooltip';
 import { UserMenuContent } from '@/components/default/user-menu-content';
 import { useCurrentUrl } from '@/hooks/use-current-url';
 import { useInitials } from '@/hooks/use-initials';
