@@ -1,6 +1,6 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { BookOpen, FolderGit2, LayoutGrid } from 'lucide-react';
-import AppLogo from '@/components/default/app-logo';
+import LogoIcon from '@/components/mine/icons/logo';
 import { NavFooter } from '@/components/default/nav-footer';
 import { NavMain } from '@/components/default/nav-main';
 import { NavUser } from '@/components/default/nav-user';
@@ -13,8 +13,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/default/ui/sidebar';
-import { dashboard } from '@/routes';
+import { company, dashboard, home } from '@/routes';
 import type { NavItem } from '@/types';
+import { useMemo } from 'react';
 
 const mainNavItems: NavItem[] = [
   {
@@ -38,14 +39,39 @@ const footerNavItems: NavItem[] = [
 ];
 
 export function AppSidebar() {
+  const { auth, name } = usePage().props;
+
+  const mainNavItems = useMemo(() => {
+    const items = [
+      {
+        title: 'Dashboard',
+        href: dashboard(),
+        icon: LayoutGrid,
+      },
+    ];
+
+    if (auth.user?.role?.type === 'administrator') {
+      items.push({
+        title: 'Company',
+        href: company(auth.user.id),
+        icon: LayoutGrid,
+      });
+    }
+
+    return items;
+  }, [auth.user?.role?.type]);
+
   return (
     <Sidebar collapsible="icon" variant="inset">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton size="lg" asChild>
-              <Link href={dashboard()} prefetch>
-                <AppLogo />
+              <Link href={home()} prefetch>
+                <div className="flex items-end gap-4">
+                  <LogoIcon />
+                  <span className='font-semibold'>{name}</span>
+                </div>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
