@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 @import 'tailwindcss';
 
 @import 'tw-animate-css';
@@ -139,4 +143,23 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+html {
+  min-height: 100dvh;
+  scroll-behavior: smooth;
+}
+body {
+  height: 100%;
+}
+
+header {
+  z-index: 100 !important;
+}
+
+.glass {
+  /* From https://css.glass */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
 }
