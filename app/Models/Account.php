@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Account\Role;
+use App\Models\Post;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
@@ -30,5 +31,8 @@ class Account extends Authenticatable {
   }
   public function belongs_to(): MorphTo {
     return $this->morphTo();
+  }
+  public function posts() {
+    return $this->hasMany(Post::class, 'published_by');
   }
 }

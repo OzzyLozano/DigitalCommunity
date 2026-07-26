@@ -1,7 +1,8 @@
-import { Head } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { Building2, Globe, Mail, MapPin, Newspaper, Phone, Users } from 'lucide-react';
 
 import { dashboard } from '@/routes';
+import { create } from '@/routes/post';
 
 type Role = {
   id: number;
@@ -20,6 +21,7 @@ type Account = {
 type Post = {
   id: number;
   title: string;
+  description: string;
   created_at: string;
 };
 
@@ -41,6 +43,8 @@ type Props = {
 };
 
 export default function Company({ company }: Props) {
+  const { auth } = usePage().props;
+
   return (
     <>
       <Head title={company.name} />
@@ -156,9 +160,9 @@ export default function Company({ company }: Props) {
             <h2 className="text-2xl font-bold">
               Últimas noticias
             </h2>
-            <button className="rounded-lg bg-[#A439E6] px-5 py-2 text-white transition hover:bg-violet-700">
+            <Link href={create(auth.user.id)} className="rounded-lg bg-[#A439E6] px-5 py-2 text-white transition hover:bg-violet-700">
               Nueva publicación
-            </button>
+            </Link>
           </div>
           {company.posts.length === 0 ? (
             <div className="rounded-2xl border border-dashed py-16 text-center text-neutral-500">
@@ -174,6 +178,9 @@ export default function Company({ company }: Props) {
                   <h3 className="text-lg font-semibold">
                     {post.title}
                   </h3>
+                  <p className="mt-2">
+                    {post.description}
+                  </p>
                   <p className="mt-2 text-sm text-neutral-500">
                     Publicado el{' '}
                     {new Date(post.created_at).toLocaleDateString()}
