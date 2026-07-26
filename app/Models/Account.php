@@ -2,9 +2,12 @@
 
 namespace App\Models;
 
+use App\Models\Account\Role;
+
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -22,6 +25,9 @@ class Account extends Authenticatable {
     ];
   }
 
+  public function role() {
+    return $this->belongsTo(Role::class, 'role_id');
+  }
   public function belongs_to(): MorphTo {
     return $this->morphTo();
   }
