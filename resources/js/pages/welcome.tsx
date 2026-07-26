@@ -24,7 +24,8 @@ export default function Welcome() {
 
   return (
     <>
-      <Head title="Welcome" />
+      <Head title="Matamoros Digital" />
+
       <main className="flex min-h-screen flex-col items-center bg-[#FDFDFC] px-6 text-[#fff] lg:justify-center lg:px-8 dark:bg-[#0a0a0a]">
         <header className="bg-[#0a0a0aa0] glass fixed top-0 w-full flex justify-evenly items-center px-4 h-[4.5rem]">
           <nav className='flex items-end gap-6'>
