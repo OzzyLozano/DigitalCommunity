@@ -5,6 +5,9 @@ namespace App\Http\Middleware;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 
+use Illuminate\Support\Facades\Auth;
+use App\Models\Account;
+
 class HandleInertiaRequests extends Middleware
 {
     /**
@@ -39,7 +42,8 @@ class HandleInertiaRequests extends Middleware
             ...parent::share($request),
             'name' => config('app.name'),
             'auth' => [
-                'user' => $request->user(),
+                'user' => Auth::guard('account')->user() ? Account::with(['role'])->find(auth()->id()) : Auth::guard('web')->user(),
+                'guard' => Auth::guard('account')->check() ? 'account' : 'web',
             ],
             'sidebarOpen' => ! $request->hasCookie('sidebar_state') || $request->cookie('sidebar_state') === 'true',
         ];
