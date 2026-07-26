@@ -47,7 +47,6 @@ main section {
   gap: 2rem;
 }
 .welcome .title {
-  color: white;
   line-height: 1;
   font-weight: 800;
   font-size: calc(3rem + 3vw);
@@ -66,7 +65,6 @@ main section {
   gap: 2rem;
 }
 .news .title {
-  color: white;
   line-height: 1;
   font-weight: 800;
   font-size: calc(2rem + 1vw);

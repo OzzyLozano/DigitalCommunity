@@ -26,8 +26,8 @@ export default function Welcome() {
     <>
       <Head title="Matamoros Digital" />
 
-      <main className="flex min-h-screen flex-col items-center bg-[#FDFDFC] px-6 text-[#fff] lg:justify-center lg:px-8 dark:bg-[#0a0a0a]">
-        <header className="bg-[#0a0a0aa0] glass fixed top-0 w-full flex justify-evenly items-center px-4 h-[4.5rem]">
+      <main className="flex min-h-screen flex-col items-center bg-[#FDFDFC] px-6 dark:text-[#fff] lg:justify-center lg:px-8 dark:bg-[#0a0a0a]">
+        <header className="dark:bg-[#0a0a0aa0] glass fixed top-0 w-full flex justify-evenly items-center px-4 h-[4.5rem]">
           <nav className='flex items-end gap-6'>
             <Link href={home()} className='flex items-end gap-2 text-xl'>
               <LogoIcon />
@@ -91,8 +91,8 @@ export default function Welcome() {
           </ul>
 
           <div className={`grid`}>
-            {visible.map((article) => (
-              <article className={`flex flex-col gap-2 glass bg-[#A439E60f] px-8 py-4`}>
+            {visible.map((article, index) => (
+              <article key={index} className={`flex flex-col gap-2 glass bg-[#A439E60f] px-8 py-4`}>
                 <span className={`text-[#A439E6] capitalize font-semibold`}>{article.category}</span>
                 <h3 className={`text-xl font-bold`}>{article.title}</h3>
                 <p>{article.excerpt}</p>
